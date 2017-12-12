@@ -22,6 +22,7 @@ addons:
       - libusb-1.0-0-dev
       - libbz2-dev
       - libgnutls-dev
+      - libcurl4-gnutls-dev
       - gettext
 
 matrix:
@@ -255,6 +256,7 @@ install:
   - |
     if [ $TRAVIS_OS_NAME = osx ]; then
       brew update
+      # MacOS comes with libcurl.
       brew install botan doxygen gettext lcov gcovr libusb gnutls
       brew link --force gettext
       # Already installed: cmake boost
