@@ -16,6 +16,7 @@ URI& URI::set_uri(const std::string& uri) {
       std::regex::extended);
   std::smatch result;
 
+  // LCOV_EXCL_BR_START : The regex currently matches any input string.
   if (std::regex_match(uri, result, uri_regex)) {
     scheme = result[2];
     authority = result[4];
@@ -23,8 +24,9 @@ URI& URI::set_uri(const std::string& uri) {
     query = result[7];
     fragment = result[9];
   } else {
-    throw std::runtime_error("malformed URI");
+    throw std::runtime_error("malformed URI"); // LCOV_EXCL_LINE
   }
+  // LCOV_EXCL_BR_STOP
   return *this;
 }
 
